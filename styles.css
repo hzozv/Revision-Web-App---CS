@@ -42,6 +42,31 @@ body {
 }
 
 #welcome_msg {
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+#xp_bar {
+    width: 100%;
+    margin-left: 10px;
+}
+
+#recommendation_msg {
+    margin-top: 30px;
+    margin-left: 10px;
+    
+}
+
+#recommendation {
+    margin-left: 10px;
+}
+
+#xp_label {
+    margin-left: 10px;
+}
+
+
+#welcome_msg {
     margin-left: 10px;
     margin-top: 0px;
 }
