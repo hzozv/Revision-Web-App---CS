@@ -18,6 +18,13 @@
         <!-- Middle: Greeting Msg, Level, XP Progression Bar, Recommended Learning -->
         <div id="middle_section">
             <h1 id="welcome_msg">Welcome, user!</h1>
+            <label id="xp_label">
+                Level <span id="current_lvl">1</span> (XP: <span id="current_xp">0</span>/<span id="current_max_xp">20</span>), Total (XP: <span id="total_xp">0</span>)
+            </label>
+            <progress id="xp_bar" value="0" max="20" title="You need 20 more XP to reach Level 2!"></progress>
+            <h2 id="recommendation_msg">We recommend learning this next...</h2>
+            <button id="recommendation">Recommendation</button>
+            <button onclick="add_xp()">Testing (Add 6 XP!)</button>
 
         </div>
 
