@@ -1,22 +1,64 @@
+// Accessing Elements
+const xp_bar = document.getElementById("xp_bar");
+
+
+// Variables used
+let username = localStorage.getItem("username") || ""; // Username
+let current_lvl = Number(localStorage.getItem("current_lvl")) || 1; // Current Level
+let total_xp = Number(localStorage.getItem("total_xp")) || 0; // Total XP
+let current_xp = Number(localStorage.getItem("current_xp")) || 0; // Current XP
+let max_xp = Number(localStorage.getItem("max_xp")) || 20; // Max XP
+let display = "You need " + (max_xp - current_xp) + " more XP to reach Level " + (current_lvl + 1) + ("!"); // Title tag for progress bar
+let overflow_xp = Number(localStorage.getItem("overflow_xp")) || xp_bar.value; // XP leftover from leveling up
+
+
+// Saving Progress to Local Storage
+function save() {
+    localStorage.setItem("username", username); // Username
+    localStorage.setItem("current_lvl", current_lvl); // Current Level
+    localStorage.setItem("total_xp", total_xp); // Total XP
+    localStorage.setItem("current_xp", xp_bar.value); // Current XP (edit?)
+    localStorage.setItem("max_xp", xp_bar.max); // Max XP (edit?)
+    localStorage.setItem("display", xp_bar.title); // Title tag for progress bar
+    localStorage.setItem("overflow_xp", overflow_xp); // XP leftover from levelup
+
+}
+
+
+// Updating HTML to match Local Storage values
+function load() {
+    document.getElementById("welcome_msg").innerHTML = "Welcome, " + username + "!"; // Username
+    document.getElementById("current_lvl").innerHTML = current_lvl; // Current Level (Label)
+    document.getElementById("total_xp").innerHTML = total_xp; // Total XP (Label)
+    document.getElementById("current_xp").innerHTML = current_xp; // Current XP (Label)
+    document.getElementById("current_max_xp").innerHTML = max_xp; // Max XP (Label)
+    xp_bar.value = current_xp; // Current XP (Progress Bar)
+    xp_bar.max = max_xp; // Max XP (Progress Bar)
+    xp_bar.title = display; // Title (Progress Bar)
+}
+
+load()
+
+
+// Reseting progress (Testing)
+function reset() {
+    localStorage.clear();
+}
+
+
 // Prompts the user for their username when the website first loads and uses it to greet them
 function greet_msg() {
-    username = prompt("How should we call you?").trim();
-    while (username == "") {
-        alert("Your username can't be blank!");
+    if (username == "") {
         username = prompt("How should we call you?").trim();
-    }
+        while (username == "" || null) {
+            alert("Your username can't be blank!");
+            username = prompt("How should we call you?").trim();
+        }
     let default_msg = document.getElementById("welcome_msg");
     default_msg.innerHTML = "Welcome " + username + "!";
+    }
 }
 greet_msg()
-
-
-//A bunch of variables used for level_up(), add_xp(), total_amount_xp().
-const xp_bar = document.getElementById("xp_bar");
-let current_lvl = parseInt(document.getElementById("current_lvl").innerHTML, 10);
-let totalAmountOfXp = parseInt(document.getElementById("total_xp").innerHTML, 10);
-let xp_label = document.getElementById("xp_label").innerHTML;
-let overflow_xp = 0;
 
 
 /*
@@ -51,5 +93,6 @@ function add_xp() {
 
 // Records the amount of xp gained
 function total_amount_xp() {
-    document.getElementById("total_xp").innerHTML = totalAmountOfXp += 15;
+    document.getElementById("total_xp").innerHTML = total_xp += 6;
 }
+
